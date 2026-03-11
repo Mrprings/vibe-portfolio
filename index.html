@@ -4,87 +4,68 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matt Pringle — Portfolio</title>
-  <!-- Montserrat Medium from Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+  <!-- Inter Medium for body text, Montserrat SemiBold for titles -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Montserrat:wght@600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     html, body {
       width: 100%;
-      background: #050505;
-      color: #f1f1f1;
-      font-family: 'Montserrat', sans-serif;
+      background: #ffffff;
+      color: #050505;
+      font-family: 'Inter', sans-serif;
       font-weight: 500;
     }
 
-    /* ─── Hero section ─────────────────────────────────────── */
-    .hero {
-      position: relative;
-      width: 100%;
-      padding: 56px 40px 120px;
+    /* ─── Page wrapper ──────────────────────────────────────── */
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 56px;
     }
 
-    /* Centered content container with max-width */
-    .hero .inner {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* Background video fills the hero */
-    .hero video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      opacity: 0.3;
-      z-index: 0;
-    }
-
-    /* Gradient: transparent at top, fades to page bg at 85% */
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #050505 85%);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* Header content sits above video and gradient */
+    /* ─── Header ────────────────────────────────────────────── */
     .header {
-      position: relative;
-      z-index: 2;
       display: flex;
       flex-direction: column;
       gap: 24px;
+      align-items: flex-start;
+      max-width: 1230px;
       width: 100%;
+      padding: 0 16px;
     }
 
-    /* ─── Avatar ─────────────────────────────────────────────── */
+    /* ─── Avatar ────────────────────────────────────────────── */
     .avatar {
       width: 56px;
       height: 56px;
       border-radius: 999px;
       overflow: hidden;
       flex-shrink: 0;
+      position: relative;
     }
 
     .avatar img {
-      width: 100%;
-      height: 100%;
+      position: absolute;
+      left: -4.17%;
+      top: -5.13%;
+      width: 118%;
+      height: 118%;
       object-fit: cover;
     }
 
-    /* ─── Name / Title / Links ───────────────────────────────── */
+    /* ─── Name / Role ───────────────────────────────────────── */
     .info {
       display: flex;
       flex-direction: column;
       gap: 8px;
+      width: 100%;
     }
 
     .info .name {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
       font-size: 18px;
       line-height: 24px;
     }
@@ -94,132 +75,226 @@
       line-height: 20px;
     }
 
-    .info .links {
+    /* ─── Blurb ─────────────────────────────────────────────── */
+    .blurb {
+      padding-top: 64px;
+      width: 100%;
+    }
+
+    .blurb p {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 52px;
+      line-height: 68px;
+      letter-spacing: -1.04px;
+    }
+
+    /* ─── Buttons ───────────────────────────────────────────── */
+    .buttons {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 48px;
+      border-radius: 999px;
+      border: 1.5px solid #262626;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
       font-size: 14px;
       line-height: 20px;
-    }
-
-    .info .links a {
-      color: #f1f1f1;
-      text-decoration: underline;
-    }
-
-    /* ─── Email tooltip ──────────────────────────────────────── */
-    .email-wrap {
-      position: relative;
-      display: inline-block;
-    }
-
-    .tooltip {
-      position: absolute;
-      top: calc(100% + 8px);
-      left: 50%;
-      transform: translateX(-50%) translateY(-4px);
-      background: #0066ff;
-      color: #f1f1f1;
-      font-size: 14px;
-      line-height: 20px;
-      padding: 8px 12px;
-      border-radius: 56px;
       white-space: nowrap;
-      pointer-events: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: #222;
+      color: #f1f1f1;
+      transition: background 0.15s ease;
+      width: 166px;
+      padding: 24px 0;
+    }
+
+    .btn-primary .btn-label {
+      transition: opacity 0.15s ease;
+    }
+
+    .btn-primary .btn-label.fading {
       opacity: 0;
-      transition: opacity 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    .tooltip.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
+    .btn-primary:hover {
+      background: #2c2c2c;
     }
 
-    /* ─── Entrance animation ─────────────────────────────────── */
+    .btn-secondary {
+      background: transparent;
+      color: #050505;
+    }
+
+    /* ─── Project grid ──────────────────────────────────────── */
+    .projects {
+      padding-top: 180px;
+      padding-left: 16px;
+      padding-right: 16px;
+      width: 100%;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      width: 100%;
+    }
+
+    /* Square card, full-bleed image */
+    .card {
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Images fill the card completely */
+    .card img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+
+    /* ─── Footer ────────────────────────────────────────────── */
+    .footer {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      max-width: 1230px;
+      width: 100%;
+      padding: 40px 16px;
+      font-size: 14px;
+      line-height: 20px;
+      color: #282828;
+      white-space: nowrap;
+    }
+
+
+    /* ─── Entrance animations ───────────────────────────────── */
     @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    /* Each header child starts invisible and animates in */
     .header .avatar,
     .header .info,
-    .header .blurb {
+    .header .blurb,
+    .header .buttons {
       opacity: 0;
       animation: fadeUp 0.6s ease forwards;
     }
 
-    .header .avatar { animation-delay: 0ms; }
-    .header .info   { animation-delay: 200ms; }
-    .header .blurb  { animation-delay: 400ms; }
-
-    /* ─── Blurb ──────────────────────────────────────────────── */
-    .blurb {
-      padding-top: 64px;
-    }
-
-    .blurb p {
-      font-size: 36px;
-      line-height: 44px;
-      max-width: 745px;
-    }
-
-    /* ─── Content below hero ─────────────────────────────────── */
-    .content {
-      padding: 0 100px 56px;
-    }
+    .header .avatar  { animation-delay: 0ms; }
+    .header .info    { animation-delay: 200ms; }
+    .header .blurb   { animation-delay: 400ms; }
+    .header .buttons { animation-delay: 500ms; }
   </style>
 </head>
 <body>
 
-  <!-- Hero with looping video background -->
-  <section class="hero">
-    <video src="assets/seamless_loop_1080p.mp4" autoplay muted loop playsinline></video>
+  <div class="page">
 
-    <div class="inner">
+    <!-- Header: avatar, name/role, blurb, CTA buttons -->
     <div class="header">
 
-      <!-- Circular avatar photo -->
       <div class="avatar">
-        <img src="https://www.figma.com/api/mcp/asset/ed2fa49d-035f-42ff-bedc-a7c76073c789" alt="Matt Pringle">
+        <img src="https://www.figma.com/api/mcp/asset/f1d81902-cfdf-49a5-8b2c-665ab507af8d" alt="Matt Pringle">
       </div>
 
-      <!-- Name, role, and contact links -->
       <div class="info">
         <p class="name">Matt Pringle</p>
-        <p class="role">Staff Product designer at OnePay</p>
-        <p class="links">
-          <a href="https://www.linkedin.com/in/prings/" target="_blank" rel="noopener">LinkedIn</a> · <span class="email-wrap"><a href="#" id="email-link">Email</a><span class="tooltip" id="email-tooltip">Copied!</span></span>
-        </p>
+        <p class="role">Product Designer &amp; Systems Lead</p>
       </div>
 
-      <!-- Hero tagline -->
       <div class="blurb">
-        <p>Customer obsessed. Product designer. System thinker. 15+ years crafting product experiences and the systems that power them.</p>
+        <p>Customer obsessed Product designer and System thinker. 15+ years crafting experiences and the systems that power them.</p>
+      </div>
+
+      <div class="buttons">
+        <!-- Copies email to clipboard; button text confirms the action -->
+        <button class="btn btn-primary" id="say-hi-btn"><span class="btn-label">Say, "Hi 👋"</span></button>
+        <a class="btn btn-secondary" href="https://www.linkedin.com/in/prings/" target="_blank" rel="noopener">Linkedin</a>
       </div>
 
     </div>
+
+    <!-- 3x2 grid of money movement project screenshots -->
+    <div class="projects">
+      <div class="grid">
+
+        <div class="card">
+          <img src="assets/work/money-movement/money-movement-01.jpg" alt="Money Movement">
+        </div>
+
+        <div class="card">
+          <img src="assets/work/money-movement/money-movement-02.jpg" alt="Money Movement">
+        </div>
+
+        <div class="card">
+          <img src="assets/work/money-movement/money-movement-03.jpg" alt="Money Movement">
+        </div>
+
+        <div class="card">
+          <img src="assets/work/money-movement/money-movement-04.jpg" alt="Money Movement">
+        </div>
+
+        <div class="card">
+          <img src="assets/work/money-movement/money-movement-05.jpg" alt="Money Movement">
+        </div>
+
+        <div class="card">
+          <img src="assets/work/money-movement/money-movement-06.jpg" alt="Money Movement">
+        </div>
+
+      </div>
     </div>
-  </section>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div>
+        <p>Matt Pringle</p>
+        <p>© 2026</p>
+      </div>
+      <p>Made with Claude Code ❤️</p>
+    </div>
+
+  </div>
 
   <script>
-    // Copy email to clipboard and show tooltip on click
-    document.getElementById('email-link').addEventListener('click', function(e) {
-      e.preventDefault();
+    // "Say, Hi" copies email; label text fades out, swaps, fades back in, then reverts
+    var btn = document.getElementById('say-hi-btn');
+    var label = btn.querySelector('.btn-label');
+    btn.addEventListener('click', function() {
       navigator.clipboard.writeText('prings@gmail.com').then(function() {
-        var tooltip = document.getElementById('email-tooltip');
-        tooltip.classList.add('show');
-        setTimeout(function() { tooltip.classList.remove('show'); }, 2000);
+        label.classList.add('fading');
+        setTimeout(function() {
+          label.textContent = 'Email copied!';
+          label.classList.remove('fading');
+        }, 150);
+        setTimeout(function() {
+          label.classList.add('fading');
+          setTimeout(function() {
+            label.textContent = 'Say, \u201cHi \uD83D\uDC4B\u201d';
+            label.classList.remove('fading');
+          }, 150);
+        }, 2000);
       });
     });
   </script>
-
-  <!-- Project cards go here -->
-  <div class="content">
-  </div>
 
 </body>
 </html>
