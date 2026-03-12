@@ -6,205 +6,21 @@
   <title>Matt Pringle — Portfolio</title>
   <!-- Inter Medium for body text, Montserrat SemiBold for titles -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Montserrat:wght@600&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    html, body {
-      width: 100%;
-      background: #ffffff;
-      color: #050505;
-      font-family: 'Inter', sans-serif;
-      font-weight: 500;
-    }
-
-    /* ─── Page wrapper ──────────────────────────────────────── */
-    .page {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-top: 56px;
-    }
-
-    /* ─── Header ────────────────────────────────────────────── */
-    .header {
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
-      align-items: flex-start;
-      max-width: 1230px;
-      width: 100%;
-      padding: 0 16px;
-    }
-
-    /* ─── Avatar ────────────────────────────────────────────── */
-    .avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 999px;
-      overflow: hidden;
-      flex-shrink: 0;
-      position: relative;
-    }
-
-    .avatar img {
-      position: absolute;
-      left: -4.17%;
-      top: -5.13%;
-      width: 118%;
-      height: 118%;
-      object-fit: cover;
-    }
-
-    /* ─── Name / Role ───────────────────────────────────────── */
-    .info {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      width: 100%;
-    }
-
-    .info .name {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 24px;
-    }
-
-    .info .role {
-      font-size: 14px;
-      line-height: 20px;
-    }
-
-    /* ─── Blurb ─────────────────────────────────────────────── */
-    .blurb {
-      padding-top: 64px;
-      width: 100%;
-    }
-
-    .blurb p {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
-      font-size: 52px;
-      line-height: 68px;
-      letter-spacing: -1.04px;
-    }
-
-    /* ─── Buttons ───────────────────────────────────────────── */
-    .buttons {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-    }
-
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 24px 48px;
-      border-radius: 999px;
-      border: 1.5px solid #262626;
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 600;
-      font-size: 14px;
-      line-height: 20px;
-      white-space: nowrap;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: #222;
-      color: #f1f1f1;
-      transition: background 0.15s ease;
-      width: 166px;
-      padding: 24px 0;
-    }
-
-    .btn-primary .btn-label {
-      transition: opacity 0.15s ease;
-    }
-
-    .btn-primary .btn-label.fading {
-      opacity: 0;
-    }
-
-    .btn-primary:hover {
-      background: #2c2c2c;
-    }
-
-    .btn-secondary {
-      background: transparent;
-      color: #050505;
-    }
-
-    /* ─── Project grid ──────────────────────────────────────── */
-    .projects {
-      padding-top: 180px;
-      padding-left: 16px;
-      padding-right: 16px;
-      width: 100%;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      width: 100%;
-    }
-
-    /* Square card, full-bleed image */
-    .card {
-      aspect-ratio: 1 / 1;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Images fill the card completely */
-    .card img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-
-    /* ─── Footer ────────────────────────────────────────────── */
-    .footer {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      max-width: 1230px;
-      width: 100%;
-      padding: 40px 16px;
-      font-size: 14px;
-      line-height: 20px;
-      color: #282828;
-      white-space: nowrap;
-    }
-
-
-    /* ─── Entrance animations ───────────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .header .avatar,
-    .header .info,
-    .header .blurb,
-    .header .buttons {
-      opacity: 0;
-      animation: fadeUp 0.6s ease forwards;
-    }
-
-    .header .avatar  { animation-delay: 0ms; }
-    .header .info    { animation-delay: 200ms; }
-    .header .blurb   { animation-delay: 400ms; }
-    .header .buttons { animation-delay: 500ms; }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+  <!-- Custom cursor: glass circle and icon are separate elements so the
+       icon's mix-blend-mode blends with the card image, not the glass -->
+  <div class="custom-cursor" id="custom-cursor"></div>
+  <div class="custom-cursor-icon" id="custom-cursor-icon">
+    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="25" cy="25" r="11" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="25" y1="20" x2="25" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="20" y1="25" x2="30" y2="25" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="33" y1="33" x2="40" y2="40" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+    </svg>
+  </div>
 
   <div class="page">
 
@@ -212,7 +28,7 @@
     <div class="header">
 
       <div class="avatar">
-        <img src="https://www.figma.com/api/mcp/asset/f1d81902-cfdf-49a5-8b2c-665ab507af8d" alt="Matt Pringle">
+        <img src="assets/Avatar.png" alt="Matt Pringle">
       </div>
 
       <div class="info">
@@ -275,6 +91,30 @@
   </div>
 
   <script>
+    // Custom cursor: follows mouse and shows/hides over project cards.
+    // Icon color adapts automatically via mix-blend-mode: exclusion — no JS needed.
+    var cursor = document.getElementById('custom-cursor');
+    var cursorIcon = document.getElementById('custom-cursor-icon');
+    var cards = document.querySelectorAll('.card');
+
+    document.addEventListener('mousemove', function(e) {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      cursorIcon.style.left = e.clientX + 'px';
+      cursorIcon.style.top = e.clientY + 'px';
+    });
+
+    cards.forEach(function(card) {
+      card.addEventListener('mouseenter', function() {
+        cursor.classList.add('visible');
+        cursorIcon.classList.add('visible');
+      });
+      card.addEventListener('mouseleave', function() {
+        cursor.classList.remove('visible');
+        cursorIcon.classList.remove('visible');
+      });
+    });
+
     // "Say, Hi" copies email; label text fades out, swaps, fades back in, then reverts
     var btn = document.getElementById('say-hi-btn');
     var label = btn.querySelector('.btn-label');

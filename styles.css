@@ -1,0 +1,250 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  width: 100%;
+  background: #ffffff;
+  color: #050505;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+}
+
+/* ─── Page wrapper ──────────────────────────────────────── */
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 56px;
+}
+
+/* ─── Header ────────────────────────────────────────────── */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  max-width: 1230px;
+  width: 100%;
+  padding: 0 16px;
+}
+
+/* ─── Avatar ────────────────────────────────────────────── */
+.avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.avatar img {
+  position: absolute;
+  left: -4.17%;
+  top: -5.13%;
+  width: 118%;
+  height: 118%;
+  object-fit: cover;
+}
+
+/* ─── Name / Role ───────────────────────────────────────── */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+}
+
+.info .name {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.info .role {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+/* ─── Blurb ─────────────────────────────────────────────── */
+.blurb {
+  padding-top: 64px;
+  width: 100%;
+}
+
+.blurb p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 52px;
+  line-height: 68px;
+  letter-spacing: -1.04px;
+}
+
+/* ─── Buttons ───────────────────────────────────────────── */
+.buttons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 48px;
+  border-radius: 999px;
+  border: 1.5px solid #262626;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: #222;
+  color: #f1f1f1;
+  transition: background 0.15s ease;
+  width: 166px;
+  padding: 24px 0;
+}
+
+.btn-primary .btn-label {
+  transition: opacity 0.15s ease;
+}
+
+.btn-primary .btn-label.fading {
+  opacity: 0;
+}
+
+.btn-primary:hover {
+  background: #2c2c2c;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #050505;
+}
+
+/* ─── Project grid ──────────────────────────────────────── */
+.projects {
+  padding-top: 180px;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+/* Square card, full-bleed image */
+.card {
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  position: relative;
+  cursor: none;
+}
+
+/* Images fill the card completely */
+.card img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  border-radius: 40px;
+}
+
+/* ─── Custom cursor (shows on card hover) ───────────────── */
+
+/* Glass circle — sits at page level, no stacking context clipping */
+.custom-cursor {
+  position: fixed;
+  width: 80px;
+  height: 80px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0px 4px 12px 0px rgba(23, 25, 29, 0.6),
+    inset 0px 0px 7px 3px rgba(253, 253, 253, 0.1);
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  transition: opacity 0.2s ease,
+              transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Icon sits as a sibling at page level so mix-blend-mode blends with
+   the underlying card image, not with the glass circle */
+.custom-cursor-icon {
+  position: fixed;
+  width: 56px;
+  height: 56px;
+  pointer-events: none;
+  z-index: 10000;
+  opacity: 0;
+  transform: translate(calc(-50% + 2px), calc(-50% + 2px)) scale(0);
+  transition: opacity 0.2s ease,
+              transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  mix-blend-mode: exclusion;
+}
+
+.custom-cursor.visible {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.custom-cursor-icon.visible {
+  opacity: 1;
+  transform: translate(calc(-50% + 2px), calc(-50% + 2px)) scale(1);
+}
+
+/* Icon strokes are white; exclusion blend mode makes them invert
+   automatically — white on dark, near-black on light */
+.custom-cursor-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* ─── Footer ────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 1230px;
+  width: 100%;
+  padding: 40px 16px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #282828;
+  white-space: nowrap;
+}
+
+/* ─── Entrance animations ───────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.header .avatar,
+.header .info,
+.header .blurb,
+.header .buttons {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.header .avatar  { animation-delay: 0ms; }
+.header .info    { animation-delay: 200ms; }
+.header .blurb   { animation-delay: 400ms; }
+.header .buttons { animation-delay: 500ms; }
