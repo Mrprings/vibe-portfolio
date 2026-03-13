@@ -7,6 +7,7 @@
   <!-- Inter Medium for body text, Montserrat SemiBold for titles -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Montserrat:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
 </head>
 <body>
 
@@ -90,6 +91,14 @@
 
   </div>
 
+  <!-- Lightbox overlay: shown when a card is clicked -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightbox-close" aria-label="Close">
+      <img src="https://www.figma.com/api/mcp/asset/55e97d81-1646-4d11-bb4b-1e163d9b48ec" alt="" class="lightbox-close-icon">
+    </button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  </div>
+
   <script>
     // Custom cursor: follows mouse and shows/hides over project cards.
     // Icon color adapts automatically via mix-blend-mode: exclusion — no JS needed.
@@ -133,6 +142,68 @@
           }, 150);
         }, 2000);
       });
+    });
+
+    // Scroll-triggered fade-up: cards animate in as they enter the viewport.
+    // Observation is delayed until the header finishes animating (~1100ms).
+    // Cards in the same row are staggered by their column position.
+    var cardObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var card = entry.target;
+          var index = Array.from(cards).indexOf(card);
+          var col = index % 3; // 0, 1, or 2 — used for stagger delay
+          setTimeout(function() {
+            card.classList.add('visible');
+          }, col * 80);
+          cardObserver.unobserve(card); // only animate once
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // Wait for header to finish before watching cards
+    setTimeout(function() {
+      cards.forEach(function(card) {
+        cardObserver.observe(card);
+      });
+    }, 1100);
+
+    // Lightbox: open on card click, navigate with arrow keys, close with Escape
+    var lightbox = document.getElementById('lightbox');
+    var lightboxImg = document.getElementById('lightbox-img');
+    var lightboxClose = document.getElementById('lightbox-close');
+    var currentIndex = 0;
+
+    function openLightbox(index) {
+      currentIndex = (index + cards.length) % cards.length; // wrap around
+      var img = cards[currentIndex].querySelector('img');
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+      lightbox.classList.add('open');
+    }
+
+    cards.forEach(function(card, i) {
+      card.addEventListener('click', function() {
+        openLightbox(i);
+      });
+    });
+
+    lightboxClose.addEventListener('click', function() {
+      lightbox.classList.remove('open');
+    });
+
+    // Close when clicking the dark backdrop (not the image itself)
+    lightbox.addEventListener('click', function(e) {
+      if (e.target === lightbox) lightbox.classList.remove('open');
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        lightbox.classList.remove('open');
+      } else if (lightbox.classList.contains('open')) {
+        if (e.key === 'ArrowRight') openLightbox(currentIndex + 1);
+        if (e.key === 'ArrowLeft')  openLightbox(currentIndex - 1);
+      }
     });
   </script>
 
