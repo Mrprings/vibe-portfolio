@@ -94,7 +94,7 @@
   <!-- Lightbox overlay: shown when a card is clicked -->
   <div class="lightbox" id="lightbox">
     <button class="lightbox-close" id="lightbox-close" aria-label="Close">
-      <img src="https://www.figma.com/api/mcp/asset/55e97d81-1646-4d11-bb4b-1e163d9b48ec" alt="" class="lightbox-close-icon">
+      <img src="assets/close-icon.svg" alt="" class="lightbox-close-icon">
     </button>
     <img class="lightbox-img" id="lightbox-img" src="" alt="">
   </div>
@@ -180,6 +180,7 @@
       lightboxImg.src = img.src;
       lightboxImg.alt = img.alt;
       lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
     }
 
     cards.forEach(function(card, i) {
@@ -190,6 +191,7 @@
 
     lightboxClose.addEventListener('click', function() {
       lightbox.classList.remove('open');
+      document.body.style.overflow = '';
     });
 
     // Close when clicking the dark backdrop (not the image itself)
@@ -200,6 +202,7 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         lightbox.classList.remove('open');
+      document.body.style.overflow = '';
       } else if (lightbox.classList.contains('open')) {
         if (e.key === 'ArrowRight') openLightbox(currentIndex + 1);
         if (e.key === 'ArrowLeft')  openLightbox(currentIndex - 1);
