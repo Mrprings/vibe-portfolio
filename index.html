@@ -49,33 +49,32 @@
 
     </div>
 
-    <!-- 3x2 grid of money movement project screenshots -->
+    <!-- Work thumbnails, grouped by project -->
     <div class="projects">
       <div class="grid">
 
-        <div class="card">
-          <img src="assets/work/money-movement/money-movement-01.jpg" alt="Money Movement">
-        </div>
+        <div class="card"><img src="assets/work/money-movement/money-movement-01.jpg" alt="Money Movement"></div>
+        <div class="card"><img src="assets/work/money-movement/money-movement-02.jpg" alt="Money Movement"></div>
+        <div class="card"><img src="assets/work/money-movement/money-movement-03.jpg" alt="Money Movement"></div>
+        <div class="card"><img src="assets/work/money-movement/money-movement-04.jpg" alt="Money Movement"></div>
+        <div class="card"><img src="assets/work/money-movement/money-movement-05.jpg" alt="Money Movement"></div>
+        <div class="card"><img src="assets/work/money-movement/money-movement-06.jpg" alt="Money Movement"></div>
 
-        <div class="card">
-          <img src="assets/work/money-movement/money-movement-02.jpg" alt="Money Movement">
-        </div>
+        <div class="card"><img src="assets/work/cash-advance/cash-advance-01.jpg" alt="Cash Advance"></div>
+        <div class="card"><img src="assets/work/cash-advance/cash-advance-02.jpg" alt="Cash Advance"></div>
+        <div class="card"><img src="assets/work/cash-advance/cash-advance-03.jpg" alt="Cash Advance"></div>
 
-        <div class="card">
-          <img src="assets/work/money-movement/money-movement-03.jpg" alt="Money Movement">
-        </div>
+        <div class="card"><img src="assets/work/n25/n25-01.jpg" alt="N25"></div>
+        <div class="card"><img src="assets/work/n25/n25-02.jpg" alt="N25"></div>
+        <div class="card"><img src="assets/work/n25/n25-03.jpg" alt="N25"></div>
 
-        <div class="card">
-          <img src="assets/work/money-movement/money-movement-04.jpg" alt="Money Movement">
-        </div>
+        <div class="card"><img src="assets/work/one-v2/one-v2-01.jpg" alt="One v2"></div>
+        <div class="card"><img src="assets/work/one-v2/one-v2-02.jpg" alt="One v2"></div>
+        <div class="card"><img src="assets/work/one-v2/one-v2-03.jpg" alt="One v2"></div>
 
-        <div class="card">
-          <img src="assets/work/money-movement/money-movement-05.jpg" alt="Money Movement">
-        </div>
-
-        <div class="card">
-          <img src="assets/work/money-movement/money-movement-06.jpg" alt="Money Movement">
-        </div>
+        <div class="card"><img src="assets/work/website 2022/one-web-01.jpg" alt="Website 2022"></div>
+        <div class="card"><img src="assets/work/website 2022/one-web-02.jpg" alt="Website 2022"></div>
+        <div class="card"><img src="assets/work/website 2022/one-web-03.jpg" alt="Website 2022"></div>
 
       </div>
     </div>
@@ -104,6 +103,7 @@
     // Icon color adapts automatically via mix-blend-mode: exclusion — no JS needed.
     var cursor = document.getElementById('custom-cursor');
     var cursorIcon = document.getElementById('custom-cursor-icon');
+
     var cards = document.querySelectorAll('.card');
 
     document.addEventListener('mousemove', function(e) {
@@ -196,7 +196,10 @@
 
     // Close when clicking the dark backdrop (not the image itself)
     lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox) lightbox.classList.remove('open');
+      if (e.target === lightbox) {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
     });
 
     document.addEventListener('keydown', function(e) {
