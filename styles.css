@@ -34,9 +34,15 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   height: 100vh;
   padding-top: 56px;
+}
+
+/* Absorbs remaining space between header and "View selected work",
+   while enforcing a 180px minimum gap */
+.hero-spacer {
+  flex: 1;
+  min-height: 180px;
 }
 
 /* ─── Header ────────────────────────────────────────────── */
