@@ -11,18 +11,6 @@
 </head>
 <body>
 
-  <!-- Custom cursor: glass circle and icon are separate elements so the
-       icon's mix-blend-mode blends with the card image, not the glass -->
-  <div class="custom-cursor" id="custom-cursor"></div>
-  <div class="custom-cursor-icon" id="custom-cursor-icon">
-    <svg viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="25" cy="25" r="11" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="25" y1="20" x2="25" y2="30" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="20" y1="25" x2="30" y2="25" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-      <line x1="33" y1="33" x2="40" y2="40" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
-    </svg>
-  </div>
-
   <div class="page">
 
     <!-- Header: avatar, name/role, blurb, CTA buttons -->
@@ -49,81 +37,54 @@
 
     </div>
 
-    <!-- Work thumbnails, grouped by project -->
-    <div class="projects">
-      <div class="grid">
-
-        <div class="card"><img src="assets/work/money-movement/money-movement-01.jpg" alt="Money Movement"></div>
-        <div class="card"><img src="assets/work/money-movement/money-movement-02.jpg" alt="Money Movement"></div>
-        <div class="card"><img src="assets/work/money-movement/money-movement-03.jpg" alt="Money Movement"></div>
-        <div class="card"><img src="assets/work/money-movement/money-movement-04.jpg" alt="Money Movement"></div>
-        <div class="card"><img src="assets/work/money-movement/money-movement-05.jpg" alt="Money Movement"></div>
-        <div class="card"><img src="assets/work/money-movement/money-movement-06.jpg" alt="Money Movement"></div>
-
-        <div class="card"><img src="assets/work/cash-advance/cash-advance-01.jpg" alt="Cash Advance"></div>
-        <div class="card"><img src="assets/work/cash-advance/cash-advance-02.jpg" alt="Cash Advance"></div>
-        <div class="card"><img src="assets/work/cash-advance/cash-advance-03.jpg" alt="Cash Advance"></div>
-
-        <div class="card"><img src="assets/work/n25/n25-01.jpg" alt="N25"></div>
-        <div class="card"><img src="assets/work/n25/n25-02.jpg" alt="N25"></div>
-        <div class="card"><img src="assets/work/n25/n25-03.jpg" alt="N25"></div>
-
-        <div class="card"><img src="assets/work/one-v2/one-v2-01.jpg" alt="One v2"></div>
-        <div class="card"><img src="assets/work/one-v2/one-v2-02.jpg" alt="One v2"></div>
-        <div class="card"><img src="assets/work/one-v2/one-v2-03.jpg" alt="One v2"></div>
-
-        <div class="card"><img src="assets/work/website 2022/one-web-01.jpg" alt="Website 2022"></div>
-        <div class="card"><img src="assets/work/website 2022/one-web-02.jpg" alt="Website 2022"></div>
-        <div class="card"><img src="assets/work/website 2022/one-web-03.jpg" alt="Website 2022"></div>
-
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="footer">
-      <div>
-        <p>Matt Pringle</p>
-        <p>© 2026</p>
-      </div>
-      <p>Made with Claude Code ❤️</p>
-    </div>
+    <!-- Clicking scrolls to first project section -->
+    <a class="view-work" href="#project-1">
+      <p>View selected work</p>
+      <img src="assets/images/arrow-down 1.svg" alt="" width="32" height="32">
+    </a>
 
   </div>
 
-  <!-- Lightbox overlay: shown when a card is clicked -->
-  <div class="lightbox" id="lightbox">
-    <button class="lightbox-close" id="lightbox-close" aria-label="Close">
-      <img src="assets/close-icon.svg" alt="" class="lightbox-close-icon">
-    </button>
-    <img class="lightbox-img" id="lightbox-img" src="" alt="">
-  </div>
+  <!-- Project 1: Money movement -->
+  <section class="project" id="project-1">
+    <div class="project-info">
+      <div class="project-title-group">
+        <h2 class="project-title">Money movement</h2>
+        <p class="project-role">Design lead</p>
+      </div>
+      <p class="project-description">Transferring money is essential in all fintech apps. Our goal was to make money movement within One completely frictionless and fast. As the design lead on this major project, I collaborated closely with product and engineering teams.</p>
+    </div>
+    <div class="project-images">
+      <div class="project-image"><img src="assets/work/money-movement/money-movement-01.jpg" alt="Money Movement"></div>
+      <div class="project-image"><img src="assets/work/money-movement/money-movement-02.jpg" alt="Money Movement"></div>
+      <div class="project-image"><img src="assets/work/money-movement/money-movement-03.jpg" alt="Money Movement"></div>
+    </div>
+  </section>
+
+  <!-- Project 2: Cash Advance -->
+  <section class="project" id="project-2">
+    <div class="project-info">
+      <div class="project-title-group">
+        <h2 class="project-title">Cash Advance</h2>
+        <p class="project-role">Design lead</p>
+      </div>
+      <p class="project-description">Cash advances have a reputation for being confusing and predatory. OnePay set out to change that. I led the design of OnePay's first-ever cash advance product, building an end-to-end experience that prioritized clarity and trust over financial jargon. At launch, over 80% of eligible users took an advance, and the feature continues to grow to this day.</p>
+    </div>
+    <div class="project-images">
+      <div class="project-image"><img src="assets/work/cash-advance/cash-advance-01.jpg" alt="Cash Advance"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div>
+      <p>Matt Pringle</p>
+      <p>© 2026</p>
+    </div>
+    <p>Made with Claude Code ❤️</p>
+  </footer>
 
   <script>
-    // Custom cursor: follows mouse and shows/hides over project cards.
-    // Icon color adapts automatically via mix-blend-mode: exclusion — no JS needed.
-    var cursor = document.getElementById('custom-cursor');
-    var cursorIcon = document.getElementById('custom-cursor-icon');
-
-    var cards = document.querySelectorAll('.card');
-
-    document.addEventListener('mousemove', function(e) {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      cursorIcon.style.left = e.clientX + 'px';
-      cursorIcon.style.top = e.clientY + 'px';
-    });
-
-    cards.forEach(function(card) {
-      card.addEventListener('mouseenter', function() {
-        cursor.classList.add('visible');
-        cursorIcon.classList.add('visible');
-      });
-      card.addEventListener('mouseleave', function() {
-        cursor.classList.remove('visible');
-        cursorIcon.classList.remove('visible');
-      });
-    });
-
     // "Say, Hi" copies email; label text fades out, swaps, fades back in, then reverts
     var btn = document.getElementById('say-hi-btn');
     var label = btn.querySelector('.btn-label');
@@ -144,73 +105,100 @@
       });
     });
 
-    // Scroll-triggered fade-up: cards animate in as they enter the viewport.
-    // Observation is delayed until the header finishes animating (~1100ms).
-    // Cards in the same row are staggered by their column position.
-    var cardObserver = new IntersectionObserver(function(entries) {
+    // Scroll snap: intercept scroll/swipe at section boundaries and jump between sections.
+    var snapping = false;
+    var project1 = document.getElementById('project-1');
+    var project2 = document.getElementById('project-2');
+
+    function atTop(el) {
+      return Math.abs(window.scrollY - el.offsetTop) < 40;
+    }
+
+    window.addEventListener('wheel', function(e) {
+      if (snapping) return;
+      // Snap down: hero → project 1
+      if (window.scrollY === 0 && e.deltaY > 0) {
+        snapping = true;
+        e.preventDefault();
+        project1.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(function() { snapping = false; }, 900);
+      }
+      // Snap down: project 1 bottom → project 2 (triggers once images have been seen)
+      else if (atTop(project2) && e.deltaY > 0) {
+        snapping = true;
+        e.preventDefault();
+        project2.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(function() { snapping = false; }, 900);
+      }
+      // Snap up: project 2 top → project 1
+      else if (atTop(project2) && e.deltaY < 0) {
+        snapping = true;
+        e.preventDefault();
+        project1.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(function() { snapping = false; }, 900);
+      }
+      // Snap up: project 1 top → hero
+      else if (atTop(project1) && e.deltaY < 0) {
+        snapping = true;
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(function() { snapping = false; }, 900);
+      }
+    }, { passive: false });
+
+    // Same behaviour for touch swipe
+    var touchStartY = 0;
+    window.addEventListener('touchstart', function(e) {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    window.addEventListener('touchend', function(e) {
+      var delta = touchStartY - e.changedTouches[0].clientY;
+      // Swipe up (finger moves up = scroll down)
+      if (delta > 30) {
+        if (window.scrollY === 0) {
+          project1.scrollIntoView({ behavior: 'smooth' });
+        } else if (atTop(project2)) {
+          project2.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+      // Swipe down (finger moves down = scroll up)
+      else if (delta < -30) {
+        if (atTop(project2)) {
+          project1.scrollIntoView({ behavior: 'smooth' });
+        } else if (atTop(project1)) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+    }, { passive: true });
+
+    // Fade-up on scroll: animate project title and description when they enter view
+    var fadeEls = document.querySelectorAll('.project-title-group, .project-description');
+    var fadeObserver = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var card = entry.target;
-          var index = Array.from(cards).indexOf(card);
-          var col = index % 3; // 0, 1, or 2 — used for stagger delay
+        if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    fadeEls.forEach(function(el) { fadeObserver.observe(el); });
+
+    // Fade-up on scroll: project images stagger in as each enters the viewport
+    var projectImages = document.querySelectorAll('.project-image');
+    var imageObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !entry.target.classList.contains('visible')) {
+          var index = Array.from(projectImages).indexOf(entry.target);
           setTimeout(function() {
-            card.classList.add('visible');
-          }, col * 80);
-          cardObserver.unobserve(card); // only animate once
+            entry.target.classList.add('visible');
+          }, index * 100);
+          imageObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
 
-    // Wait for header to finish before watching cards
-    setTimeout(function() {
-      cards.forEach(function(card) {
-        cardObserver.observe(card);
-      });
-    }, 1100);
-
-    // Lightbox: open on card click, navigate with arrow keys, close with Escape
-    var lightbox = document.getElementById('lightbox');
-    var lightboxImg = document.getElementById('lightbox-img');
-    var lightboxClose = document.getElementById('lightbox-close');
-    var currentIndex = 0;
-
-    function openLightbox(index) {
-      currentIndex = (index + cards.length) % cards.length; // wrap around
-      var img = cards[currentIndex].querySelector('img');
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt;
-      lightbox.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    cards.forEach(function(card, i) {
-      card.addEventListener('click', function() {
-        openLightbox(i);
-      });
-    });
-
-    lightboxClose.addEventListener('click', function() {
-      lightbox.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-
-    // Close when clicking the dark backdrop (not the image itself)
-    lightbox.addEventListener('click', function(e) {
-      if (e.target === lightbox) {
-        lightbox.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-    });
-
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        lightbox.classList.remove('open');
-      document.body.style.overflow = '';
-      } else if (lightbox.classList.contains('open')) {
-        if (e.key === 'ArrowRight') openLightbox(currentIndex + 1);
-        if (e.key === 'ArrowLeft')  openLightbox(currentIndex - 1);
-      }
-    });
+    projectImages.forEach(function(img) { imageObserver.observe(img); });
   </script>
 
 </body>

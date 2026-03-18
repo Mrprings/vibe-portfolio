@@ -1,11 +1,24 @@
 /* ─── Figma tokens (Brand mode) ─────────────────────────── */
 /* Confirmed from Figma variables — update here if tokens change */
 :root {
-  --bg-container-work: #ecedf2;  /* bg/container-work */
   --icon-inverse: #050505;       /* Icon/Inverse */
+  --border-default: #262626;     /* border/default */
+  --border-subtle: #cfcfcf;      /* border/subtle */
+  --text-subtle: #92979F;        /* text/subtle */
 }
 
+/* ─── Type scale ─────────────────────────────────────────── */
+/* Display   — 72px / 80lh / -1.44 tracking  — Montserrat 600 */
+/* Headline  — 48px / 60lh / -0.96 tracking  — Montserrat 600 */
+/* Subhead   — 32px / 48lh / -0.64 tracking  — Montserrat 600 */
+/* Title     — 18px / 24lh / 0 tracking      — Montserrat 600 */
+/* Body      — 14px / 20lh / 0 tracking      — Inter 500      */
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
 
 html, body {
   width: 100%;
@@ -13,6 +26,7 @@ html, body {
   color: var(--icon-inverse);
   font-family: 'Inter', sans-serif;
   font-weight: 500;
+  scrollbar-gutter: stable;
 }
 
 /* ─── Page wrapper ──────────────────────────────────────── */
@@ -20,6 +34,8 @@ html, body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  height: 100vh;
   padding-top: 56px;
 }
 
@@ -71,21 +87,21 @@ html, body {
 .info .role {
   font-size: 14px;
   line-height: 20px;
-  color: #707070;
+  color: var(--text-subtle);
 }
 
 /* ─── Blurb ─────────────────────────────────────────────── */
 .blurb {
-  padding-top: 64px;
+  padding-top: 96px;
   width: 100%;
 }
 
 .blurb p {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 52px;
-  line-height: 68px;
-  letter-spacing: -1.04px;
+  font-size: 72px;
+  line-height: 80px;
+  letter-spacing: -1.44px;
 }
 
 /* ─── Buttons ───────────────────────────────────────────── */
@@ -101,7 +117,7 @@ html, body {
   justify-content: center;
   padding: 24px 48px;
   border-radius: 999px;
-  border: 1.5px solid #262626;
+  border: 1.5px solid var(--border-default);
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 14px;
@@ -136,187 +152,132 @@ html, body {
   color: #050505;
 }
 
-/* ─── Project grid ──────────────────────────────────────── */
-.projects {
-  padding-top: 104px;
-  padding-left: 16px;
-  padding-right: 16px;
-  width: 100%;
-}
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  width: 100%;
-}
-
-/* Square card, full-bleed image */
-.card {
-  aspect-ratio: 1 / 1;
-  overflow: hidden;
-  position: relative;
-  cursor: none;
-  border-radius: 40px;
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Images fill the card completely */
-.card img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  pointer-events: none;
-}
-
-/* ─── Custom cursor (shows on card hover) ───────────────── */
-
-/* Glass circle — sits at page level, no stacking context clipping */
-.custom-cursor {
-  position: fixed;
-  width: 80px;
-  height: 80px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  box-shadow:
-    0px 4px 12px 0px rgba(23, 25, 29, 0.6),
-    inset 0px 0px 7px 3px rgba(253, 253, 253, 0.1);
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0);
-  transition: opacity 0.2s ease,
-              transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* Icon sits as a sibling at page level so mix-blend-mode blends with
-   the underlying card image, not with the glass circle */
-.custom-cursor-icon {
-  position: fixed;
-  width: 56px;
-  height: 56px;
-  pointer-events: none;
-  z-index: 10000;
-  opacity: 0;
-  transform: translate(calc(-50% + 2px), calc(-50% + 2px)) scale(0);
-  transition: opacity 0.2s ease,
-              transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  mix-blend-mode: exclusion;
-}
-
-.custom-cursor.visible {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-.custom-cursor-icon.visible {
-  opacity: 1;
-  transform: translate(calc(-50% + 2px), calc(-50% + 2px)) scale(1);
-}
-
-/* Icon strokes are white; exclusion blend mode makes them invert
-   automatically — white on dark, near-black on light */
-.custom-cursor-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-/* ─── Footer ────────────────────────────────────────────── */
-.footer {
+/* ─── View selected work ────────────────────────────────── */
+.view-work {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  align-items: center;
+  gap: 17px;
   max-width: 1230px;
   width: 100%;
-  padding: 40px 16px;
-  font-size: 14px;
-  line-height: 20px;
-  color: #707070;
+  padding: 24px 16px;
+  border-top: 1px solid var(--border-subtle);
+  text-decoration: none;
+}
+
+.view-work p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: -0.64px;
+  color: var(--text-subtle);
   white-space: nowrap;
 }
 
-/* ─── Lightbox ──────────────────────────────────────────── */
-
-/* Full-screen backdrop, hidden by default */
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 10001;
-  background: color-mix(in srgb, var(--bg-container-work) 90%, transparent);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-}
-
-.lightbox.open {
-  opacity: 1;
-  pointer-events: all;
-}
-
-/* The image, constrained to 85vh / 1040px max */
-.lightbox-img {
-  height: 85vh;
-  max-height: 1040px;
-  max-width: 90vw;
-  object-fit: contain;
-  border-radius: 0;
-  display: block;
-  transform: scale(0.95);
-  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.lightbox.open .lightbox-img {
-  transform: scale(1);
-}
-
-/* Close button — top-right corner */
-.lightbox-close {
-  position: fixed;
-  top: 24px;
-  right: 24px;
-  width: 56px;
-  height: 56px;
-  border-radius: 999px;
-  background: var(--bg-container-work);
-  border: 1px solid rgba(5, 5, 5, 0.12); /* subtle ring so button reads against scrim */
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.15s ease;
-}
-
-.lightbox-close:hover {
-  opacity: 0.8;
-}
-
-.lightbox-close-icon {
+.view-work img {
   width: 32px;
   height: 32px;
   display: block;
 }
 
-/* ─── Responsive: single column below 801px ────────────── */
-@media (max-width: 800px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
+/* ─── Project section ───────────────────────────────────── */
+.project {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 104px 16px;
+  width: 100%;
+}
+
+/* Title + role + description block */
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: 104px;
+  align-items: flex-start;
+  padding-bottom: 104px;
+  max-width: 1230px;
+  width: 100%;
+}
+
+.project-title-group {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.project-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 80px;
+  letter-spacing: -1.44px;
+  color: #050505;
+}
+
+.project-role {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 48px;
+  letter-spacing: -0.64px;
+  color: var(--text-subtle);
+}
+
+.project-description {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 48px;       /* Headline */
+  line-height: 60px;
+  letter-spacing: -0.96px;
+  color: var(--text-subtle);
+  width: 100%;
+}
+
+/* Fade-up on scroll — starts hidden, transitions in when observed */
+.project-title-group,
+.project-description {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-title-group.visible { opacity: 1; transform: translateY(0); }
+.project-description.visible { opacity: 1; transform: translateY(0); transition-delay: 200ms; }
+
+/* Stacked full-width images */
+.project-images {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1230px;
+  width: 100%;
+}
+
+.project-image {
+  width: 100%;
+  height: 692px;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-image.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.project-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 /* ─── Entrance animations ───────────────────────────────── */
@@ -328,7 +289,8 @@ html, body {
 .header .avatar,
 .header .info,
 .header .blurb,
-.header .buttons {
+.header .buttons,
+.view-work {
   opacity: 0;
   animation: fadeUp 0.6s ease forwards;
 }
@@ -337,3 +299,22 @@ html, body {
 .header .info    { animation-delay: 200ms; }
 .header .blurb   { animation-delay: 400ms; }
 .header .buttons { animation-delay: 500ms; }
+.view-work       { animation-delay: 650ms; }
+
+/* ─── Footer ────────────────────────────────────────────── */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 40px 16px;
+  width: 100%;
+  max-width: 1230px;
+  margin: 0 auto;
+  background: #ffffff;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: var(--text-subtle);
+  white-space: nowrap;
+}
