@@ -187,31 +187,6 @@ html, body {
   display: block;
 }
 
-/* ─── Responsive: short viewports ──────────────────────── */
-/* Scale down blurb padding and font size so hero content fits */
-@media (max-height: 800px) {
-  .blurb {
-    padding-top: 48px;
-  }
-  .blurb p {
-    font-size: 56px;
-    line-height: 68px;
-  }
-}
-
-@media (max-height: 640px) {
-  .blurb {
-    padding-top: 24px;
-  }
-  .blurb p {
-    font-size: 42px;
-    line-height: 52px;
-  }
-  .hero-spacer {
-    min-height: 80px;
-  }
-}
-
 /* ─── Project section ───────────────────────────────────── */
 .project {
   display: flex;
