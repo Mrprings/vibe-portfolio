@@ -447,3 +447,107 @@ html, body {
   color: var(--text-subtle);
   white-space: nowrap;
 }
+
+/* ─── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+
+  /* Hero */
+  .page {
+    padding-top: 40px;
+    padding-bottom: 56px;
+  }
+
+  .blurb {
+    gap: 32px;
+  }
+
+  .blurb p {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -0.72px;
+  }
+
+  /* Buttons — reduce padding so they don't feel oversized */
+  .btn {
+    padding: 18px 28px;
+    font-size: 13px;
+  }
+
+  .btn-primary {
+    width: auto;
+    padding: 18px 28px;
+  }
+
+  .btn-view-work {
+    height: auto;
+    padding: 18px 24px;
+  }
+
+  /* Projects */
+  .project {
+    padding: 64px 16px;
+  }
+
+  .project-info {
+    gap: 40px;
+    padding-bottom: 40px;
+  }
+
+  .project-title {
+    font-size: 36px;
+    line-height: 44px;
+    letter-spacing: -0.72px;
+  }
+
+  .project-role {
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: -0.4px;
+  }
+
+  .project-description {
+    font-size: 24px;
+    line-height: 34px;
+    letter-spacing: -0.48px;
+  }
+
+  /* Images — drop the fixed height, use aspect ratio instead */
+  .project-images {
+    gap: 12px;
+  }
+
+  .project-image {
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 20px;
+  }
+
+  /* Menu overlay */
+  .menu-overlay {
+    padding: 12px;
+  }
+
+  .menu-modal {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .menu-links {
+    gap: 28px;
+  }
+
+  .menu-link {
+    font-size: 36px;
+    line-height: 44px;
+  }
+
+  .menu-close {
+    bottom: 32px;
+  }
+
+  /* Menu button — move slightly closer to edge on mobile */
+  .menu-btn {
+    right: 16px;
+    bottom: 24px;
+  }
+}
