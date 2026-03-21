@@ -11,6 +11,25 @@
 </head>
 <body>
 
+  <!-- Menu overlay — shown when menu button is clicked -->
+  <div class="menu-overlay" id="menu-overlay">
+    <div class="menu-modal">
+      <nav class="menu-links">
+        <a href="#project-1" class="menu-link">Money movement</a>
+        <a href="#project-2" class="menu-link">Cash advance</a>
+        <a href="#project-3" class="menu-link">One.app</a>
+      </nav>
+      <button class="menu-close" id="menu-close" aria-label="Close menu">
+        <img src="assets/close-icon.svg" width="32" height="32" alt="">
+      </button>
+    </div>
+  </div>
+
+  <!-- Menu button — fixed, appears when user scrolls to first project -->
+  <button class="menu-btn" id="menu-btn" aria-label="Menu">
+    <img src="assets/images/menu.svg" width="32" height="32" alt="">
+  </button>
+
   <div class="page">
 
     <!-- Header: avatar, name/role, blurb, CTA buttons -->
@@ -23,28 +42,23 @@
       <div class="info">
         <p class="name">Matt Pringle</p>
         <p class="role">Product Designer &amp; Systems Lead</p>
-      </div>
-
-      <div class="blurb">
-        <p>Customer obsessed Product designer and System thinker. 15+ years crafting experiences and the systems that power them.</p>
-      </div>
-
-      <div class="buttons">
-        <!-- Copies email to clipboard; button text confirms the action -->
-        <button class="btn btn-primary" id="say-hi-btn"><span class="btn-label">Say, "Hi 👋"</span></button>
-        <a class="btn btn-secondary" href="https://www.linkedin.com/in/prings/" target="_blank" rel="noopener">Linkedin</a>
+        <a class="linkedin" href="https://www.linkedin.com/in/prings/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
 
     </div>
 
-    <!-- Spacer: pushes "View selected work" to the bottom while enforcing a 180px minimum gap -->
-    <div class="hero-spacer"></div>
-
-    <!-- Clicking scrolls to first project section -->
-    <a class="view-work" href="#project-1">
-      <p>View selected work</p>
-      <img src="assets/images/arrow-down 1.svg" alt="" width="32" height="32">
-    </a>
+    <div class="blurb">
+      <p>Customer obsessed Product designer and System thinker. 15+ years crafting experiences and the systems that power them.</p>
+      <div class="buttons">
+        <!-- Copies email to clipboard; button text confirms the action -->
+        <button class="btn btn-primary" id="say-hi-btn"><span class="btn-label">Say, &ldquo;Hi 👋&rdquo;</span></button>
+        <!-- Scrolls to first project -->
+        <a class="btn btn-secondary btn-view-work" href="#project-1">
+          <span>View Work</span>
+          <img src="assets/images/arrow-down 1.svg" alt="" width="24" height="24">
+        </a>
+      </div>
+    </div>
 
   </div>
 
@@ -75,6 +89,26 @@
     </div>
     <div class="project-images">
       <div class="project-image"><img src="assets/work/cash-advance/cash-advance-01.jpg" alt="Cash Advance"></div>
+    </div>
+  </section>
+
+  <!-- Project 3: One.app -->
+  <section class="project" id="project-3">
+    <div class="project-info">
+      <div class="project-title-group">
+        <h2 class="project-title">One.app</h2>
+        <p class="project-role">Creative Director / Design Lead</p>
+      </div>
+      <p class="project-description">One Finance needed a website that could match the ambition of their product. As Creative Director and Design Lead, I owned the full site end-to-end, covering UX, visual design, and copy direction, delivering a complete redesign in just three weeks. The launch drove a significant increase in account signups and earned strong praise from leadership.</p>
+    </div>
+    <div class="project-images">
+      <div class="project-image"><img src="assets/work/one-web/one-web-01.jpg" alt="One.app"></div>
+      <div class="project-image"><img src="assets/work/one-web/one-web-02.jpg" alt="One.app"></div>
+      <div class="project-image"><img src="assets/work/one-web/one-web-03.jpg" alt="One.app"></div>
+      <div class="project-image"><img src="assets/work/one-web/one-web-04.jpg" alt="One.app"></div>
+      <div class="project-image"><img src="assets/work/one-web/one-web-05.jpg" alt="One.app"></div>
+      <div class="project-image"><img src="assets/work/one-web/one-web-06.jpg" alt="One.app"></div>
+      <div class="project-image"><img src="assets/work/one-web/one-web-07.jpg" alt="One.app"></div>
     </div>
   </section>
 
@@ -136,6 +170,45 @@
     }, { threshold: 0.1 });
 
     projectImages.forEach(function(img) { imageObserver.observe(img); });
+
+    // Menu overlay open/close
+    var menuBtn = document.getElementById('menu-btn');
+    var menuOverlay = document.getElementById('menu-overlay');
+    var menuClose = document.getElementById('menu-close');
+
+    function openMenu() {
+      menuOverlay.classList.add('visible');
+      menuBtn.classList.add('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      menuOverlay.classList.remove('visible');
+      menuBtn.classList.remove('hidden');
+      document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', openMenu);
+    menuClose.addEventListener('click', closeMenu);
+
+    // Clicking a nav link closes the overlay
+    menuOverlay.querySelectorAll('.menu-link').forEach(function(link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Show menu button once project-1 scrolls into view; stays visible from then on
+    var menuTrigger = document.getElementById('project-1');
+    var menuObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          menuBtn.classList.add('visible');
+          setTimeout(function() { menuBtn.classList.add('entered'); }, 600);
+          menuObserver.unobserve(menuTrigger);
+        }
+      });
+    }, { threshold: 0.05 });
+
+    menuObserver.observe(menuTrigger);
   </script>
 
 </body>
