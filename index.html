@@ -2,11 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matt Pringle — Portfolio</title>
+  <title>Matt Pringle — Product Designer & Design Systems Lead</title>
+  <meta name="description" content="Customer-obsessed Product Designer with 15+ years crafting experiences and the design systems that power them.">
+  <meta name="author" content="Matt Pringle">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://prings.design">
   <!-- Inter Medium for body text, Montserrat SemiBold for titles -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500&family=Montserrat:wght@600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <!-- Open Graph / share card -->
+  <meta property="og:title" content="Matt Pringle — Portfolio">
+  <meta property="og:description" content="Customer-obsessed Product Designer with 15+ years crafting experiences and the design systems that power them.">
+  <meta property="og:url" content="https://prings.design">
+  <meta property="og:image" content="https://prings.design/assets/images/share-image.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://prings.design/assets/images/share-image.jpg">
+  <!-- Structured data: helps Google understand this is a person/portfolio -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Matt Pringle",
+    "jobTitle": "Product Designer & Design Systems Lead",
+    "url": "https://prings.design",
+    "sameAs": ["https://www.linkedin.com/in/prings/"],
+    "description": "Customer-obsessed Product Designer with 15+ years crafting experiences and the design systems that power them."
+  }
+  </script>
   <script src="https://mcp.figma.com/mcp/html-to-design/capture.js" async></script>
 </head>
 <body>
@@ -17,7 +42,8 @@
       <nav class="menu-links">
         <a href="#project-1" class="menu-link">Money movement</a>
         <a href="#project-2" class="menu-link">Cash advance</a>
-        <a href="#project-3" class="menu-link">One.app</a>
+        <a href="#project-3" class="menu-link">OnePay Rewards</a>
+        <a href="#project-4" class="menu-link">One.app</a>
       </nav>
       <button class="menu-close" id="menu-close" aria-label="Close menu">
         <img src="assets/close-icon.svg" width="32" height="32" alt="">
@@ -92,8 +118,25 @@
     </div>
   </section>
 
-  <!-- Project 3: One.app -->
+  <!-- Project 3: OnePay Rewards -->
   <section class="project" id="project-3">
+    <div class="project-info">
+      <div class="project-title-group">
+        <h2 class="project-title">OnePay Rewards</h2>
+        <p class="project-role">Design lead</p>
+      </div>
+      <p class="project-description">Switching from cash back to a points system sounds simple, but convincing customers that points are just as real as money is anything but. I led the end-to-end design of OnePay Rewards, from how customers learned about points, to how they earned them, to how they redeemed them for cash, stock, or crypto. The goal was never just a smooth transition. It had to feel like an upgrade.</p>
+    </div>
+    <div class="project-images">
+      <div class="project-image"><img src="assets/work/points/Points-01.jpg" alt="OnePay Rewards"></div>
+      <div class="project-image"><img src="assets/work/points/Points-02.jpg" alt="OnePay Rewards"></div>
+      <div class="project-image"><img src="assets/work/points/points-03.jpg" alt="OnePay Rewards"></div>
+      <div class="project-image"><img src="assets/work/points/points-04.jpg" alt="OnePay Rewards"></div>
+    </div>
+  </section>
+
+  <!-- Project 4: One.app -->
+  <section class="project" id="project-4">
     <div class="project-info">
       <div class="project-title-group">
         <h2 class="project-title">One.app</h2>
