@@ -146,7 +146,7 @@ html, body {
   background: #222;
   color: #f1f1f1;
   transition: background 0.15s ease;
-  width: 166px;
+  width: 179px;
   padding: 24px 0;
 }
 
@@ -169,6 +169,7 @@ html, body {
 
 .btn-view-work {
   gap: 8px;
+  width: 179px;
   height: 68px;
   padding: 0 28px 0 32px;
 }
@@ -474,11 +475,12 @@ html, body {
   }
 
   .btn-primary {
-    width: auto;
+    width: 179px;
     padding: 18px 28px;
   }
 
   .btn-view-work {
+    width: 179px;
     height: auto;
     padding: 18px 24px;
   }
