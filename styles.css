@@ -1,10 +1,40 @@
-/* ─── Figma tokens (Brand mode) ─────────────────────────── */
-/* Confirmed from Figma variables — update here if tokens change */
+/* ─── Color tokens ───────────────────────────────────────── */
 :root {
-  --icon-inverse: #050505;       /* Icon/Inverse */
-  --border-default: #262626;     /* border/default */
-  --border-subtle: #cfcfcf;      /* border/subtle */
-  --text-subtle: #92979F;        /* text/subtle */
+  /* Light mode (default) */
+  --bg:                #ffffff;
+  --text-primary:      #050505;
+  --text-subtle:       #92979F;
+  --border-default:    #262626;
+  --border-subtle:     #cfcfcf;
+  --btn-primary-bg:    #222222;
+  --btn-primary-hover: #2c2c2c;
+  --btn-primary-text:  #f1f1f1;
+  --btn-secondary-text:#050505;
+  --menu-modal-bg:     rgba(34, 34, 34, 0.9);
+  --menu-close-bg:     #ecedf2;
+  --menu-close-hover:  #dddee4;
+  --menu-btn-bg:       #222222;
+  --menu-btn-hover:    #2c2c2c;
+
+  /* Legacy alias */
+  --icon-inverse: var(--text-primary);
+}
+
+[data-theme="dark"] {
+  --bg:                #111111;
+  --text-primary:      #efefef;
+  --text-subtle:       #888e97;
+  --border-default:    #d0d0d0;
+  --border-subtle:     #2e2e2e;
+  --btn-primary-bg:    #efefef;
+  --btn-primary-hover: #dfdfdf;
+  --btn-primary-text:  #111111;
+  --btn-secondary-text:#efefef;
+  --menu-modal-bg:     rgba(18, 18, 18, 0.95);
+  --menu-close-bg:     #252525;
+  --menu-close-hover:  #303030;
+  --menu-btn-bg:       #efefef;
+  --menu-btn-hover:    #dfdfdf;
 }
 
 /* ─── Type scale ─────────────────────────────────────────── */
@@ -22,11 +52,12 @@ html {
 
 html, body {
   width: 100%;
-  background: #ffffff;
-  color: var(--icon-inverse);
+  background: var(--bg);
+  color: var(--text-primary);
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   scrollbar-gutter: stable;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 /* ─── Page wrapper ──────────────────────────────────────── */
@@ -94,7 +125,7 @@ html, body {
 .info .linkedin {
   font-size: 14px;
   line-height: 20px;
-  color: #050505;
+  color: var(--text-primary);
   text-decoration: underline;
   text-underline-offset: 1px;
 }
@@ -140,12 +171,13 @@ html, body {
   white-space: nowrap;
   cursor: pointer;
   text-decoration: none;
+  transition: border-color 0.3s ease;
 }
 
 .btn-primary {
-  background: #222;
-  color: #f1f1f1;
-  transition: background 0.15s ease;
+  background: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  transition: background 0.15s ease, color 0.3s ease;
   width: 179px;
   padding: 24px 0;
 }
@@ -159,12 +191,13 @@ html, body {
 }
 
 .btn-primary:hover {
-  background: #2c2c2c;
+  background: var(--btn-primary-hover);
 }
 
 .btn-secondary {
   background: transparent;
-  color: #050505;
+  color: var(--btn-secondary-text);
+  transition: color 0.3s ease;
 }
 
 .btn-view-work {
@@ -178,6 +211,11 @@ html, body {
   width: 24px;
   height: 24px;
   display: block;
+  transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .btn-view-work img {
+  filter: invert(1);
 }
 
 
@@ -214,7 +252,7 @@ html, body {
   font-size: 72px;
   line-height: 80px;
   letter-spacing: -1.44px;
-  color: #050505;
+  color: var(--text-primary);
 }
 
 .project-role {
@@ -297,6 +335,36 @@ html, body {
 .blurb           { animation-delay: 400ms; }
 .blurb .buttons  { animation-delay: 500ms; }
 
+/* ─── Theme toggle ──────────────────────────────────────── */
+.theme-toggle {
+  position: fixed;
+  top: 56px;
+  right: 24px;
+  z-index: 100;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 1.5px solid var(--border-subtle);
+  background: var(--bg);
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  opacity: 0;
+  animation: fadeUp 0.6s ease 300ms forwards;
+}
+
+.theme-toggle:hover {
+  background: var(--menu-close-bg);
+}
+
+/* Show moon in light mode, sun in dark mode */
+.theme-toggle .icon-sun { display: none; }
+[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+[data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+
 /* ─── Menu overlay ──────────────────────────────────────── */
 /* Full-screen dark modal with backdrop blur; hidden until menu button clicked */
 .menu-overlay {
@@ -322,7 +390,7 @@ html, body {
   height: 100%;
   max-width: 720px;
   max-height: 720px;
-  background: rgba(34, 34, 34, 0.9);
+  background: var(--menu-modal-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-radius: 40px;
@@ -332,6 +400,7 @@ html, body {
   justify-content: center;
   position: relative;
   overflow: hidden;
+  transition: background 0.3s ease;
 }
 
 .menu-links {
@@ -366,7 +435,7 @@ html, body {
   width: 56px;
   height: 56px;
   border-radius: 999px;
-  background: #ecedf2;
+  background: var(--menu-close-bg);
   border: none;
   cursor: pointer;
   display: flex;
@@ -376,7 +445,15 @@ html, body {
 }
 
 .menu-close:hover {
-  background: #dddee4;
+  background: var(--menu-close-hover);
+}
+
+.menu-close img {
+  transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .menu-close img {
+  filter: invert(1);
 }
 
 /* ─── Menu button ───────────────────────────────────────── */
@@ -393,7 +470,7 @@ html, body {
   width: 56px;
   height: 56px;
   border-radius: 999px;
-  background: #222;
+  background: var(--menu-btn-bg);
   border: none;
   cursor: pointer;
   display: flex;
@@ -404,6 +481,18 @@ html, body {
   pointer-events: none;
   transition: background 0.15s ease;
   z-index: 100;
+}
+
+.menu-btn img {
+  transition: filter 0.3s ease;
+}
+
+[data-theme="dark"] .menu-btn img {
+  filter: invert(1);
+}
+
+[data-theme="dark"] .menu-btn {
+  mix-blend-mode: difference;
 }
 
 /* Spring entrance — cubic-bezier overshoots slightly for the bounce */
@@ -426,7 +515,7 @@ html, body {
 }
 
 .menu-btn:hover {
-  background: #2c2c2c;
+  background: var(--menu-btn-hover);
 }
 
 /* ─── Footer ────────────────────────────────────────────── */
@@ -438,13 +527,14 @@ html, body {
   width: 100%;
   max-width: 1230px;
   margin: 0 auto;
-  background: #ffffff;
+  background: var(--bg);
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   color: var(--text-subtle);
   white-space: nowrap;
+  transition: background 0.3s ease;
 }
 
 /* ─── Mobile ─────────────────────────────────────────────── */
@@ -552,9 +642,19 @@ html, body {
     bottom: 32px;
   }
 
+  .theme-toggle {
+    top: 40px;
+    right: 16px;
+  }
+
   /* Menu button — move slightly closer to edge on mobile */
   .menu-btn {
     right: 16px;
     bottom: 24px;
   }
+
+  [data-theme="dark"] .menu-btn {
+    mix-blend-mode: normal;
+  }
+
 }
