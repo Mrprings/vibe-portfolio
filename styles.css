@@ -372,16 +372,19 @@ html, body {
   inset: 0;
   padding: 16px;
   z-index: 200;
-  opacity: 0;
+  visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
+.menu-overlay.preparing,
 .menu-overlay.visible {
-  opacity: 1;
+  visibility: visible;
+}
+
+.menu-overlay.visible {
   pointer-events: auto;
 }
 
@@ -400,7 +403,20 @@ html, body {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  transition: background 0.3s ease;
+  opacity: 0;
+  transform: translateY(12px) scale(0.985);
+  will-change: opacity, transform, backdrop-filter;
+  transition: opacity 0.28s ease, transform 0.36s cubic-bezier(0.22, 1, 0.36, 1), background 0.3s ease;
+}
+
+/* Paint the blur layer before revealing the panel to avoid a delayed blur flash. */
+.menu-overlay.preparing .menu-modal {
+  opacity: 0.001;
+}
+
+.menu-overlay.visible .menu-modal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 .menu-links {
