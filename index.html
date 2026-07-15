@@ -94,7 +94,7 @@
 
       <div class="info">
         <p class="name">Matt Pringle</p>
-        <p class="role">Product Designer &amp; Systems Lead</p>
+        <p class="role">Product Design Lead</p>
         <a class="linkedin" href="https://www.linkedin.com/in/prings/" target="_blank" rel="noopener">LinkedIn</a>
       </div>
 
@@ -184,11 +184,8 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div>
-      <p>Matt Pringle</p>
-      <p>© 2026</p>
-    </div>
-    <p>Made with Claude Code ❤️</p>
+    <p>Matt Pringle</p>
+    <p>©2026</p>
   </footer>
 
   <script>
@@ -258,17 +255,34 @@
     var menuBtn = document.getElementById('menu-btn');
     var menuOverlay = document.getElementById('menu-overlay');
     var menuClose = document.getElementById('menu-close');
+    var menuOpenFrame;
+    var menuVisibilityTimer;
 
     function openMenu() {
-      menuOverlay.classList.add('visible');
+      clearTimeout(menuVisibilityTimer);
+      menuOverlay.classList.add('preparing');
       menuBtn.classList.add('hidden');
       document.body.style.overflow = 'hidden';
+
+      // Give the browser two paint frames to prepare the backdrop blur before
+      // the modal begins its entrance transition.
+      menuOpenFrame = requestAnimationFrame(function() {
+        menuOpenFrame = requestAnimationFrame(function() {
+          menuOverlay.classList.add('visible');
+        });
+      });
     }
 
     function closeMenu() {
+      cancelAnimationFrame(menuOpenFrame);
       menuOverlay.classList.remove('visible');
       menuBtn.classList.remove('hidden');
       document.body.style.overflow = '';
+
+      // Keep the overlay mounted until its exit transition has completed.
+      menuVisibilityTimer = setTimeout(function() {
+        menuOverlay.classList.remove('preparing');
+      }, 360);
     }
 
     menuBtn.addEventListener('click', openMenu);
